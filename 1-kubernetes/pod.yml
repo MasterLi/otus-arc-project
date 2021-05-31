@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: otus-arc-health-pod
+  labels:
+    app: otus-arc-health
+spec:
+  containers:
+    - name: web-server
+      image: sae2000/otus-arc-project:web-server
+      ports:
+        - containerPort: 80
