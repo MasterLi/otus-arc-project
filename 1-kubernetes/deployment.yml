@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: otus-arc-health-deployment
 spec:
-  replicas: 0
+  replicas: 2
   selector:
     matchLabels:
       app: otus-arc-health
