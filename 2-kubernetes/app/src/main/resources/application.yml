@@ -1,0 +1,50 @@
+spring:
+  application:
+    name: ws-user
+
+  datasource:
+    platform: postgres
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://pg0:5432/db_user?currentSchema=public
+    username: acdb
+    password: acdb
+    maxActive: 2
+    hikari:
+      maximum-pool-size: 2
+    initialization-mode: always
+
+  jpa:
+    open-in-view: false
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQL10Dialect
+    hibernate:
+      ddl-auto: update
+      database: POSTGRESQL
+      show-sql: false
+      database-platform: org.hibernate.dialect.PostgreSQL10Dialect
+      default_schema: public
+
+  management:
+    security:
+      enabled: false
+
+server:
+  #порт, на котором доступно API приложения
+  port: 8000
+  servlet:
+    context-path: /app
+    encoding:
+      charset: UTF-8
+      enabled: true
+      force: true
+
+
+eureka:
+  client:
+    enabled: false
+
+myapp:
+  application:
+    swaggerEnabled: false
+    adminUserPassword: "Qw8v#CmX35CvJ@VM4Z"

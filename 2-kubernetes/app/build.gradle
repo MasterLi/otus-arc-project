@@ -1,0 +1,98 @@
+buildscript {
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:2.2.5.RELEASE")
+    }
+}
+
+plugins {
+    id 'org.springframework.boot' version '2.2.6.RELEASE'
+    id 'io.spring.dependency-management' version '1.0.10.RELEASE'
+    id 'java'
+    id 'idea'
+}
+
+sourceCompatibility = JavaVersion.VERSION_11
+targetCompatibility = JavaVersion.VERSION_11
+//см. переменные в gradle.properties
+group = projectGroup
+version = projectVersion
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
+repositories {
+    mavenCentral()
+
+}
+
+ext {
+    finalProjectVersion = rootProject.hasProperty("finalProjectVersion") ? rootProject.finalProjectVersion : ""
+}
+
+dependencies {
+    implementation "org.springframework.cloud:spring-cloud-starter-sleuth:2.2.2.RELEASE"
+    implementation("org.springframework.boot:spring-boot-starter-data-jpa:${springBootVersion}")
+    implementation("org.postgresql:postgresql:${postgresqlVersion}")
+
+    implementation("org.springframework.boot:spring-boot-starter-actuator:${springBootVersion}")
+    implementation("org.springframework.boot:spring-boot-starter-web:${springBootVersion}")
+    implementation("org.springframework.boot:spring-boot-starter-security:${springBootVersion}")
+
+    implementation group: 'net.logstash.logback', name: 'logstash-logback-encoder', version: '6.3'
+
+    implementation("javax.validation:validation-api:2.0.1.Final")
+    implementation("com.fasterxml.jackson.core:jackson-core:${jacksonCoreVersion}")
+
+    implementation("org.junit.jupiter:junit-jupiter-params:${junitJupiteVersion}")
+
+    //swagger open api
+    implementation('io.swagger:swagger-annotations:1.6.0')
+
+    //lombok
+    compileOnly "org.projectlombok:lombok:${lombokVersion}"
+    annotationProcessor "org.projectlombok:lombok:${lombokVersion}"
+
+    //lombok test
+    testCompileOnly "org.projectlombok:lombok:${lombokVersion}"
+    testAnnotationProcessor "org.projectlombok:lombok:${lombokVersion}"
+
+    testImplementation("org.springframework.boot:spring-boot-starter-test:${springBootVersion}") {
+        exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+    }
+    testImplementation "org.junit.jupiter:junit-jupiter-api:${junitJupiteVersion}"
+    testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:${junitJupiteVersion}"
+
+}
+
+test {
+    useJUnitPlatform()
+}
+
+dependencyManagement {
+    imports {
+        mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
+    }
+}
+
+bootJar {
+    archiveBaseName = 'ws-user'
+    archiveVersion = null
+    archiveFileName = 'ws-user.jar'
+    manifest {
+        attributes(
+                "Build-Label": finalProjectVersion
+        )
+    }
+}
+
+jar.enabled = false
+
+compileJava.options.encoding = 'UTF-8'
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+    options.deprecation = true
+    options.compilerArgs << '-Xlint:unchecked'
+}
