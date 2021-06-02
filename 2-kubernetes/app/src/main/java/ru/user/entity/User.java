@@ -28,16 +28,16 @@ public class User {
     /**
      * Имя входа пользователя
      */
-    @Column(name = "username", length = 1024)
+    @Column(name = "user_name", length = 512)
     private String username;
 
-    @Column(name = "firstName", length = 1024)
+    @Column(name = "first_name", length = 512)
     private String firstName;
 
-    @Column(name = "lastName", length = 1024)
+    @Column(name = "last_name", length = 512)
     private String lastName;
 
-    @Column(name = "email", length = 1024)
+    @Column(name = "email", length = 512)
     private String email;
 
     @Column(name = "phone", length = 21)

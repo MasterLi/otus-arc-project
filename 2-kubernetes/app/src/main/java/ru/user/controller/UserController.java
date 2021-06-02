@@ -32,7 +32,7 @@ public class UserController {
             @ApiResponse(code = HttpURLConnection.HTTP_FORBIDDEN, message = "Forbidden exception", response = ErrorResponse.class)
     })
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<UserInfoDto> getUserInfo(@PathVariable(value = "userId", required = true) Long userId) {
+    public ResponseEntity<UserInfoDto> getUserInfo(@RequestParam(value = "userId", required = true) Long userId) {
         return ResponseEntity.ok(userService.getUserInfo(userId));
     }
 
@@ -55,7 +55,7 @@ public class UserController {
             @ApiResponse(code = HttpURLConnection.HTTP_FORBIDDEN, message = "Forbidden exception", response = ErrorResponse.class)
     })
     @PutMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public void updateUser(@PathVariable(value = "userId", required = true) Long userId, @RequestBody UserDto userDto) {
+    public void updateUser(@RequestParam(value = "userId", required = true) Long userId, @RequestBody UserDto userDto) {
         userService.updateUser(userId, userDto);
     }
 
@@ -65,8 +65,8 @@ public class UserController {
             @ApiResponse(code = HttpURLConnection.HTTP_INTERNAL_ERROR, message = "Business exception", response = ErrorResponse.class),
             @ApiResponse(code = HttpURLConnection.HTTP_FORBIDDEN, message = "Forbidden exception", response = ErrorResponse.class)
     })
-    @PutMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public void deleteUser(@PathVariable(value = "userId", required = true) Long userId) {
+    @DeleteMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+    public void deleteUser(@RequestParam(value = "userId", required = true) Long userId) {
         userService.deleteUser(userId);
     }
 
