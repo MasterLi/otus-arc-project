@@ -1,0 +1,29 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: "ws-user"
+spec:
+  template:
+    metadata:
+      name: "ws-user"
+    spec:
+      restartPolicy: Never
+      containers:
+        - name: post-install-job
+          image: postgres:latest
+          env:
+            - name: POSTGRES_PASSWORD
+              value: "pwd"
+          command:
+            - sh
+            - "-c"
+            - |
+              psql postgres://postgres:pwd@pg0-postgresql/db_user <<'EOF'
+                CREATE USER acdb WITH PASSWORD 'acdb';
+                create sequence public.seq_object start 1;
+                create table public.users (id BIGINT  not null default nextval('public.seq_object'), user_name varchar(512) null, first_name varchar(512) null,last_name varchar(512) null, email varchar(512) null,phone varchar(512) null, constraint users_pk primary key (id));
+                GRANT ALL PRIVILEGES ON public.users TO acdb;
+                GRANT ALL PRIVILEGES ON public.seq_object TO acdb;
+              EOF
+
+  backoffLimit: 0
