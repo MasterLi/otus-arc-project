@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: otus-arc-health
+  labels:
+    app: otus-arc-health
+    version: v1
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: otus-arc-health
+      version: v1
+  template:
+    metadata:
+      labels:
+        app: otus-arc-health
+        version: v1
+    spec:
+      containers:
+        - name: web-server
+          image: sae2000/otus-arc-project:web-server-v1
+          ports:
+            - name: web-server
+              containerPort: 80
