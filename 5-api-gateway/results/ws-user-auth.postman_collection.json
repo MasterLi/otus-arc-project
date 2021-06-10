@@ -1,0 +1,243 @@
+{
+	"info": {
+		"_postman_id": "7ae1e144-13b9-479b-921c-8f007bf65a70",
+		"name": "ws-user-auth",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "public-create user petrov2",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \"username\":\"petrov2\",\r\n\"firstName\":\"Иван2\",\r\n\"lastName\":\"Петров2\",\r\n\"email\":\"bad@otus.ru2\",\r\n\"phone\":\"+79019999999\",\r\n\"password\":\"rediska\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "arch.homework/app/public/user",
+					"host": [
+						"arch",
+						"homework"
+					],
+					"path": [
+						"app",
+						"public",
+						"user"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "admin-getUserInfo",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "pwd",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "arch.homework/app/private/user",
+					"host": [
+						"arch",
+						"homework"
+					],
+					"path": [
+						"app",
+						"private",
+						"user"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "petrov2-getUserInfo",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "petrov2",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "pwd",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "arch.homework/app/private/user",
+					"host": [
+						"arch",
+						"homework"
+					],
+					"path": [
+						"app",
+						"private",
+						"user"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "admin-update user",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "admin",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "pwd",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \r\n\"firstName\":\"Admin-changed\",\r\n\"lastName\":\"SuperAdmin\",\r\n\"email\":\"bad@otus.ru\",\r\n\"phone\":\"+79019999999\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "arch.homework/app/private/user",
+					"host": [
+						"arch",
+						"homework"
+					],
+					"path": [
+						"app",
+						"private",
+						"user"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "petrov2-update user",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "rediska",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "petrov2",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \r\n\"firstName\":\"Petrov-changed\",\r\n\"lastName\":\"SuperPetrov\",\r\n\"email\":\"bad@otus.ru\",\r\n\"phone\":\"+79019999999\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "arch.homework/app/private/user",
+					"host": [
+						"arch",
+						"homework"
+					],
+					"path": [
+						"app",
+						"private",
+						"user"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "logout",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": null
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "basic",
+		"basic": [
+			{
+				"key": "password",
+				"value": "pwd",
+				"type": "string"
+			},
+			{
+				"key": "username",
+				"value": "admin",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}

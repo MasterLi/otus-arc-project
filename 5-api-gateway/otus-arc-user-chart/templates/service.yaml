@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "otus-arc-user-chart.fullname" . }}
+  labels:
+    {{- include "otus-arc-user-chart.labels" . | nindent 4 }}
+spec:
+  type: {{ .Values.service.type }}
+  ports:
+    - port: {{ .Values.service.port }}
+      targetPort: http
+      protocol: TCP
+      name: http
+    - port: {{ .Values.monitoring.port }}
+      targetPort: {{ .Values.monitoring.port }}
+      protocol: TCP
+      name: metrics
+  selector:
+    {{- include "otus-arc-user-chart.selectorLabels" . | nindent 4 }}

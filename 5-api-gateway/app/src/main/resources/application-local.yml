@@ -1,0 +1,6 @@
+spring:
+
+logging:
+  level:
+    ROOT: DEBUG
+    com.prosysopc.ua: ERROR
