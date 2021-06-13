@@ -1,0 +1,72 @@
+spring:
+  application:
+    name: ws-user
+
+  datasource:
+    platform: postgres
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/db_user?currentSchema=public
+    username: acdb
+    password: acdb
+    maxActive: 2
+    hikari:
+      maximum-pool-size: 2
+    initialization-mode: always
+
+  jpa:
+    open-in-view: false
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQL10Dialect
+    hibernate:
+      ddl-auto: update
+      database: POSTGRESQL
+      show-sql: false
+      database-platform: org.hibernate.dialect.PostgreSQL10Dialect
+      default_schema: public
+
+  management:
+    security:
+      enabled: false
+
+server:
+  #порт, на котором доступно API приложения
+  port: 8000
+  servlet:
+    context-path: /app
+    encoding:
+      charset: UTF-8
+      enabled: true
+      force: true
+
+
+eureka:
+  client:
+    enabled: false
+
+#мониторинг /actuator/health
+management:
+  endpoints:
+    #    enabled-by-default: true
+    jmx:
+      exposure:
+        #        include: health,info,mappings,env
+        include: "*"
+    web:
+      exposure:
+        #        include: health,info,loggers,env
+        include: "*"
+    loggers:
+      enabled: true
+  endpoint:
+    health:
+      show-details: ALWAYS
+    beans:
+      cache:
+        time-to-live: 10s
+#  server:
+#    port: 9990
+
+myapp:
+  application:
+    swaggerEnabled: false
