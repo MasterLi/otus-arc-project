@@ -1,0 +1,24 @@
+module BillingService
+{
+
+  interface Billing
+  {
+    PaymentResponse createPayment(PaymentRequest request);
+  };
+
+  struct PaymentResponse
+  {
+        long id;
+        long sourceId;
+        enum PaymentResponseStatus;
+        string errorText;
+  };
+
+  struct PaymentRequest
+  {
+        long id;
+        double sum;
+        string userName;
+  };
+
+};

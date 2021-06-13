@@ -1,0 +1,18 @@
+module MailService
+{
+
+  interface Mail
+  {
+    oneway sendMail(PaymentRequest request);
+  };
+
+  struct MailRequest
+  {
+        long id;
+        string userName;
+        string recipients;
+        string subject;
+        string body;
+  };
+
+};
