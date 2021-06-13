@@ -1,0 +1,479 @@
+{
+	"info": {
+		"_postman_id": "3cfc3914-ccfe-43dc-9f36-b0ab00aa5515",
+		"name": "ws-user-event",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "create-user",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \"username\":\"customer1\",\r\n\"firstName\":\"client\",\r\n\"lastName\":\"client family\",\r\n\"email\":\"bad@otus.ru2\",\r\n\"phone\":\"+79019999999\",\r\n\"password\":\"pwd\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "arch.homework/app/public/user",
+					"host": [
+						"arch",
+						"homework"
+					],
+					"path": [
+						"app",
+						"public",
+						"user"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get-all-products",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "pwd",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "customer1",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "arch.homework/app/private/nsi/product",
+					"host": [
+						"arch",
+						"homework"
+					],
+					"path": [
+						"app",
+						"private",
+						"nsi",
+						"product"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create-order-1",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "pwd",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "customer1",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"orderItems\":[\r\n        {\"itemId\":\"2\", \"count\": 1},\r\n        {\"itemId\":\"3\", \"count\": 2},\r\n        {\"itemId\":\"4\", \"count\": 3}\r\n    ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "arch.homework/app/private/user/order",
+					"host": [
+						"arch",
+						"homework"
+					],
+					"path": [
+						"app",
+						"private",
+						"user",
+						"order"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get-user-order-list",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "pwd",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "customer1",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "arch.homework/app/private/user/order",
+					"host": [
+						"arch",
+						"homework"
+					],
+					"path": [
+						"app",
+						"private",
+						"user",
+						"order"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "add-order-product",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "pwd",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "customer1",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"itemId\":\"5\", \"count\": 5, \"orderId\":7}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "arch.homework/app/private/user/order/product",
+					"host": [
+						"arch",
+						"homework"
+					],
+					"path": [
+						"app",
+						"private",
+						"user",
+						"order",
+						"product"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get-order-products",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "pwd",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "customer1",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "arch.homework/app/private/user/order/info?orderId=7",
+					"host": [
+						"arch",
+						"homework"
+					],
+					"path": [
+						"app",
+						"private",
+						"user",
+						"order",
+						"info"
+					],
+					"query": [
+						{
+							"key": "orderId",
+							"value": "7"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete-position-from-product",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "arch.homework/app/private/user/order/product?orderDetailId=15",
+					"host": [
+						"arch",
+						"homework"
+					],
+					"path": [
+						"app",
+						"private",
+						"user",
+						"order",
+						"product"
+					],
+					"query": [
+						{
+							"key": "orderDetailId",
+							"value": "15"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "cancel-order",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "pwd",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "customer1",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "arch.homework/app/private/user/order?orderId=7",
+					"host": [
+						"arch",
+						"homework"
+					],
+					"path": [
+						"app",
+						"private",
+						"user",
+						"order"
+					],
+					"query": [
+						{
+							"key": "orderId",
+							"value": "7"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "send-order-pay",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "arch.homework/app/private/user/order?orderId=7",
+					"host": [
+						"arch",
+						"homework"
+					],
+					"path": [
+						"app",
+						"private",
+						"user",
+						"order"
+					],
+					"query": [
+						{
+							"key": "orderId",
+							"value": "7"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "admin-orders-list",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "admin",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "pwd",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"orderStateFilter\":null,\r\n    \"sortField\":\"ord.date_created\",\r\n    \"sortDirection\":\"DESC\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "arch.homework/app/private/staff/order",
+					"host": [
+						"arch",
+						"homework"
+					],
+					"path": [
+						"app",
+						"private",
+						"staff",
+						"order"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "admin-orders-list-desc",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "admin",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "pwd",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"orderStateFilter\":null,\r\n    \"sortField\":\"createDate\",\r\n    \"sortDirection\":\"DESC\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "arch.homework/app/private/staff/order",
+					"host": [
+						"arch",
+						"homework"
+					],
+					"path": [
+						"app",
+						"private",
+						"staff",
+						"order"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "admin-orders-list-filtered",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "admin",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "pwd",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"orderStateFilter\":\"PAYMENT\",\r\n    \"sortField\":\"price\",\r\n    \"sortDirection\":\"DESC\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "arch.homework/app/private/staff/order",
+					"host": [
+						"arch",
+						"homework"
+					],
+					"path": [
+						"app",
+						"private",
+						"staff",
+						"order"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
